@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Admin RSVP</title>
+	<script src="https://cdn.tailwindcss.com"></script>
+	<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+	<style>
+		body {
+			font-family: 'Cormorant Garamond', serif;
+			background:
+				radial-gradient(circle at top, rgba(232, 212, 255, 0.35), transparent 34%),
+				radial-gradient(circle at bottom, rgba(212, 255, 168, 0.28), transparent 30%),
+				linear-gradient(180deg, #ffffff 0%, #fbfbf8 100%);
+		}
+
+		.display-font {
+			font-family: 'Playfair Display', serif;
+		}
+	</style>
+</head>
+<body>
+	<main class="mx-auto min-h-screen max-w-md px-4 py-8 text-[#353535]">
+		<section id="loginBox" class="rounded-[2rem] bg-white p-8 shadow-xl ring-1 ring-[#77b699]/20">
+			<h1 class="display-font text-center text-3xl text-[#5e9c82]">Panel Admin</h1>
+			<p class="mt-2 text-center text-sm text-[#5f5f5f]">Acceso temporal</p>
+			<form id="loginForm" class="mt-6 space-y-4">
+				<div>
+					<label for="user" class="text-sm font-semibold">Usuario</label>
+					<input id="user" type="text" class="mt-1 w-full rounded-xl border border-[#c9d9cf] px-3 py-2 outline-none focus:border-[#77b699]" placeholder="admin">
+				</div>
+				<div>
+					<label for="pass" class="text-sm font-semibold">Clave</label>
+					<input id="pass" type="password" class="mt-1 w-full rounded-xl border border-[#c9d9cf] px-3 py-2 outline-none focus:border-[#77b699]" placeholder="admin">
+				</div>
+				<button type="submit" class="inline-flex w-full items-center justify-center rounded-2xl bg-[#e6f4ea] px-6 py-3 font-semibold shadow-md transition hover:bg-[#d0eadf]">Entrar</button>
+				<p id="loginStatus" class="text-center text-sm text-[#b65f5f]"></p>
+			</form>
+		</section>
+
+		<section id="dashboard" class="hidden rounded-[2rem] bg-white p-8 shadow-xl ring-1 ring-[#c9a7ef]/30">
+			<div class="flex items-center justify-between gap-3">
+				<h2 class="display-font text-2xl text-[#8a63b3]">Confirmaciones</h2>
+				<button id="logoutBtn" class="rounded-xl border border-[#ddd] px-3 py-1 text-sm">Salir</button>
+			</div>
+
+			<div class="mt-4 grid grid-cols-2 gap-2 text-sm">
+				<div class="rounded-lg bg-[#f8fff6] p-2">Confirmados: <span id="adminSi">0</span></div>
+				<div class="rounded-lg bg-[#fff7fb] p-2">No asisten: <span id="adminNo">0</span></div>
+				<div class="rounded-lg bg-[#f8fff6] p-2">Adultos: <span id="adminAdultos">0</span></div>
+				<div class="rounded-lg bg-[#fff7fb] p-2">Niños: <span id="adminNinos">0</span></div>
+			</div>
+
+			<div id="adminList" class="mt-4 max-h-[52vh] overflow-y-auto rounded-xl border border-[#eee] p-3"></div>
+		</section>
+	</main>
+
+	<script>
+		const loginForm = document.getElementById('loginForm');
+		const loginBox = document.getElementById('loginBox');
+		const dashboard = document.getElementById('dashboard');
+		const loginStatus = document.getElementById('loginStatus');
+		const logoutBtn = document.getElementById('logoutBtn');
+		const adminSi = document.getElementById('adminSi');
+		const adminNo = document.getElementById('adminNo');
+		const adminAdultos = document.getElementById('adminAdultos');
+		const adminNinos = document.getElementById('adminNinos');
+		const adminList = document.getElementById('adminList');
+
+		function getRsvpData() {
+			try {
+				return JSON.parse(localStorage.getItem('rsvpSubmissions') || '[]');
+			} catch (error) {
+				void error;
+				return [];
+			}
+		}
+
+		function renderDashboard() {
+			const data = getRsvpData();
+			const si = data.filter((item) => item.asistira === 'Si').length;
+			const no = data.filter((item) => item.asistira === 'No').length;
+			const totalAdultos = data.reduce((acc, item) => acc + Number(item.adultos || 0), 0);
+			const totalNinos = data.reduce((acc, item) => acc + Number(item.ninos || 0), 0);
+
+			adminSi.textContent = String(si);
+			adminNo.textContent = String(no);
+			adminAdultos.textContent = String(totalAdultos);
+			adminNinos.textContent = String(totalNinos);
+
+			if (!data.length) {
+				adminList.innerHTML = '<p class="text-sm text-[#6f6f6f]">Sin confirmaciones todavía.</p>';
+				return;
+			}
+
+			adminList.innerHTML = data
+				.slice()
+				.reverse()
+				.map((item) => {
+					const fecha = new Date(item.createdAt).toLocaleString('es-EC');
+					return `<div class="mb-3 rounded-lg border border-[#ececec] p-3 text-sm">
+						<p><strong>${item.adulto1 || 'Sin nombre'}</strong> - ${item.asistira}</p>
+						<p>Adultos: ${item.adultos} | Niños: ${item.ninos} | Bus: ${item.bus}</p>
+						<p>Alergias: ${item.alergias || 'Ninguna'}</p>
+						<p>Canción: ${item.cancion || 'Sin sugerencia'}</p>
+						<p class="text-xs text-[#777] mt-1">${fecha}</p>
+					</div>`;
+				})
+				.join('');
+		}
+
+		function openDashboard() {
+			loginBox.classList.add('hidden');
+			dashboard.classList.remove('hidden');
+			renderDashboard();
+		}
+
+		loginForm.addEventListener('submit', (event) => {
+			event.preventDefault();
+			const user = document.getElementById('user').value.trim();
+			const pass = document.getElementById('pass').value;
+
+			if (user === 'admin' && pass === 'admin') {
+				sessionStorage.setItem('adminLogged', '1');
+				openDashboard();
+				return;
+			}
+
+			loginStatus.textContent = 'Usuario o clave incorrectos';
+		});
+
+		logoutBtn.addEventListener('click', () => {
+			sessionStorage.removeItem('adminLogged');
+			window.location.reload();
+		});
+
+		if (sessionStorage.getItem('adminLogged') === '1') {
+			openDashboard();
+		}
+	</script>
+</body>
+</html>

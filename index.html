@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Joao & Samantha</title>
+	<script src="https://cdn.tailwindcss.com"></script>
+	<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;600;700&family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+	<style>
+		:root {
+			--mint: #b7c8bc;
+			--mint-soft: #d4ffa8;
+			--lila: #e8d4ff;
+			--ink: #353535;
+			--sage: #77b699;
+			--sage-dark: #5e9c82;
+		}
+
+		html {
+			scroll-behavior: smooth;
+		}
+
+		body {
+			font-family: 'Cormorant Garamond', serif;
+			color: var(--ink);
+			background:
+				radial-gradient(circle at top, rgba(232, 212, 255, 0.35), transparent 34%),
+				radial-gradient(circle at bottom, rgba(212, 255, 168, 0.28), transparent 30%),
+				linear-gradient(180deg, #ffffff 0%, #fbfbf8 100%);
+		}
+
+		.script-font {
+			font-family: 'Great Vibes', cursive;
+		}
+
+		.display-font {
+			font-family: 'Playfair Display', serif;
+		}
+
+		.texture {
+			background-image: radial-gradient(rgba(53, 53, 53, 0.05) 1px, transparent 1px);
+			background-size: 18px 18px;
+		}
+
+		.rasgado-lila {
+			position: relative;
+		}
+	</style>
+</head>
+<body>
+	<main class="mx-auto min-h-screen max-w-md overflow-x-clip bg-white shadow-[0_0_0_1px_rgba(53,53,53,0.05)]">
+		<section id="coverSection" class="relative min-h-screen overflow-hidden">
+			<div class="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.25),rgba(255,255,255,0.55)_45%,rgba(255,255,255,0.85)_100%)]"></div>
+			<div class="absolute inset-0 bg-cover bg-center" style="background-image:url('./assets/portada/cover.jpg'); background-size: cover; opacity: 0.9;"></div>
+			<div class="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.22),rgba(255,255,255,0.62))]"></div>
+			<img class="pointer-events-none absolute left-0 top-8 w-24 opacity-70" src="./assets/decoraciones/decoration.png" alt="decoracion">
+			<img class="pointer-events-none absolute right-0 bottom-10 w-24 opacity-70" src="./assets/decoraciones/decoration4.png" alt="decoracion">
+
+			<button id="openInvite" type="button" class="relative z-10 flex min-h-screen w-full flex-col justify-center px-6 py-10 text-center">
+				<div class="mx-auto flex w-full max-w-sm flex-col items-center justify-center gap-8 rounded-[2rem] border border-white/70 bg-white/20 px-6 py-12 shadow-2xl backdrop-blur-[3px]">
+					<div class="relative w-full overflow-visible">
+						<div class="script-font text-6xl leading-none text-[#303030] sm:text-7xl">Joao</div>
+						<img class="mx-auto my-3 w-12 opacity-85" src="./assets/iconos/ampersand-alt.png" alt="&amp;">
+						<div class="script-font text-6xl leading-none text-[#303030] sm:text-7xl">Samantha</div>
+					</div>
+
+					<div class="display-font flex w-full flex-col items-center gap-4 text-[#303030]">
+						<p class="text-xl font-light">Tenemos una noticia que darles</p>
+						<img class="w-28 opacity-90" src="./assets/iconos/heart.png" alt="heart">
+						<div class="flex w-full items-center gap-3">
+							<span class="h-px flex-1 bg-[#77b699]"></span>
+							<span class="text-sm font-bold tracking-[0.35em] text-[#5e9c82]">PULSA AQUÍ</span>
+							<span class="h-px flex-1 bg-[#77b699]"></span>
+						</div>
+						<div class="space-y-1 text-center">
+							<p class="text-lg font-bold tracking-[0.22em] text-[#303030]">CIVIL 04 JUNIO · 10:00 AM</p>
+							<p class="text-base font-semibold tracking-[0.18em] text-[#5e9c82]">ECLESIÁSTICO 06 JUNIO · 11:00 AM</p>
+							<p class="text-lg font-bold tracking-[0.3em] text-[#303030]">Y DESLIZA</p>
+						</div>
+					</div>
+				</div>
+			</button>
+		</section>
+
+		<section id="inviteContent" class="hidden bg-white text-[#353535]">
+			<div class="texture relative overflow-hidden">
+				<div class="relative px-4 pt-5">
+					<img class="pointer-events-none absolute left-0 top-2 w-20 opacity-75" src="./assets/decoraciones/decoration2.png" alt="decoracion">
+					<div class="relative overflow-hidden rounded-[2rem] border border-[#eef3ec] bg-white shadow-xl">
+						<img class="aspect-[5/4] w-full object-cover px-1.5 py-3 opacity-80" src="./assets/fotos/place1.jpg" alt="portada invitacion">
+						<div class="absolute inset-0 border-[10px] border-white/70"></div>
+					</div>
+				</div>
+
+				<div class="relative py-8 text-center">
+					<div class="script-font text-6xl leading-none text-[#303030]">Joao</div>
+					<div class="mt-2 text-4xl text-[#5e9c82]">
+						<img class="mx-auto h-14 w-auto" src="./assets/iconos/ampersand-alt.png" alt="&amp;">
+					</div>
+					<div class="script-font text-6xl leading-none text-[#303030]">Samantha</div>
+					<div class="mx-auto mt-6 w-5/6 border-t border-[#77b699] pt-2 text-xl tracking-[0.2em]">4 y 6 de junio de 2026</div>
+					<div class="mx-auto mt-2 w-5/6 border-b border-[#77b699] pb-2 text-xl tracking-[0.25em]">¡NOS CASAMOS!</div>
+					<div class="mt-4 flex justify-center">
+						<img class="w-20 opacity-80" src="./assets/iconos/heart.png" alt="heart">
+					</div>
+					<div class="mx-auto mt-6 w-5/6 rounded-2xl border border-[#dfe9df] bg-white/80 p-4">
+						<p class="text-xs uppercase tracking-[0.2em] text-[#5e9c82]">Guardar en calendario</p>
+						<div class="mt-3 flex flex-col gap-2">
+							<a id="calendarGoogle" href="#" class="inline-flex w-full items-center justify-center rounded-xl border border-[#77b699] bg-[#e6f4ea] px-4 py-2 text-sm font-semibold text-[#353535] transition hover:bg-[#d7ece0]">Google Calendar</a>
+							<a id="calendarIcs" href="#" class="inline-flex w-full items-center justify-center rounded-xl border border-[#c9a7ef] bg-[#f6eeff] px-4 py-2 text-sm font-semibold text-[#353535] transition hover:bg-[#eedfff]">Apple / Outlook (.ics)</a>
+						</div>
+					</div>
+				</div>
+
+				<img class="w-full" src="./assets/separadores/divisor.png" alt="divisor">
+
+				<section class="relative bg-[#b7c8bc] px-4 py-12 text-center text-white">
+					<img class="pointer-events-none absolute left-0 top-0 w-24 -translate-y-1/2 opacity-70" src="./assets/decoraciones/decoration3.png" alt="decoracion">
+					<div class="mx-auto max-w-sm rounded-[2rem] bg-white p-8 shadow-xl">
+						<h2 class="script-font text-5xl text-[#5e9c82]">Civil</h2>
+						<img class="mx-auto my-4 w-12 opacity-80" src="./assets/iconos/ceremony.png" alt="civil">
+						<p class="display-font text-xl tracking-wide text-[#353535]">Registro Civil de Tumbaco</p>
+						<p class="text-lg text-[#353535]">Centro Comercial Ventura, primera planta baja</p>
+						<p class="mt-4 text-xl font-semibold text-[#353535]">4 de junio · 10:00 h</p>
+						<a href="https://www.google.com.ec/maps?vet=10CAAQoqAOahcKEwjo4Y3aueSUAxUAAAAAHQAAAAAQIA..i&sca_esv=5bcabb5514d506cb&pvq=CgwvZy8xaGR6OTUydDUiHgoYY2VudHJvIGNvbWVyY2lhbCB2ZW50dXJhEAIYAw&lqi=ChhjZW50cm8gY29tZXJjaWFsIHZlbnR1cmFIpZbK5LOPgIAIWjQQABABEAIYABgBGAIiGGNlbnRybyBjb21lcmNpYWwgdmVudHVyYSoICAIQABABEAIyAmVzkgEPc2hvcHBpbmdfY2VudGVy&fvr=1&cs=1&um=1&ie=UTF-8&fb=1&gl=ec&sa=X&ftid=0x91d591308011eccd:0x5ce5b7c29baf5e42" target="_blank" rel="noreferrer" class="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-2xl border border-[#353535] bg-[#dff3e8] px-6 py-3 text-lg font-semibold text-[#353535] shadow-md transition hover:translate-y-[-1px] hover:bg-[#d0eadf]">
+							<img class="h-5 w-5" src="./assets/iconos/map-icon.png" alt="mapa">
+							(Pulsa para ver en Maps)
+						</a>
+					</div>
+				</section>
+
+				<img class="w-full -scale-y-100" src="./assets/separadores/divisor-line.png" alt="divisor-line">
+
+				<section class="relative bg-white px-4 py-12 text-center text-white">
+					<img class="pointer-events-none absolute right-0 top-4 w-20 opacity-70" src="./assets/decoraciones/decoration4.png" alt="decoracion">
+					<div class="mx-auto max-w-sm rounded-[2rem] border border-[#e8d4ff] bg-white p-8 shadow-xl">
+						<h2 class="script-font text-5xl text-[#5e9c82]">Eclesiástico</h2>
+						<img class="mx-auto my-4 w-12 opacity-80" src="./assets/iconos/reception.png" alt="eclesiastico">
+						<p class="display-font text-xl tracking-wide text-[#353535]">Templo SUD, Ruta Viva</p>
+						<p class="text-lg text-[#353535]">Quito</p>
+						<p class="mt-4 text-xl font-semibold text-[#353535]">6 de junio · 11:00 h</p>
+						<a href="https://www.google.com.ec/maps/place/Templo+Iglesia+de+Jesucristo+de+los+Santos+de+los+%C3%9Altimos+D%C3%ADas-Quito/@-0.2140296,-78.4437841,17z/data=!3m1!4b1!4m6!3m5!1s0x91d5912b678e4bc7:0x7d88b26115392042!8m2!3d-0.2140296!4d-78.4412092!16s%2Fg%2F11c3ywdtjp?entry=ttu&g_ep=EgoyMDI2MDUyNy4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noreferrer" class="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-2xl border border-[#353535] bg-[#e8d4ff] px-6 py-3 text-lg font-semibold text-[#353535] shadow-md transition hover:translate-y-[-1px] hover:bg-[#dfc4fb]">
+							<img class="h-5 w-5" src="./assets/iconos/map-icon.png" alt="mapa">
+							(Pulsa para ver en Maps)
+						</a>
+					</div>
+				</section>
+
+			<img class="w-full" src="./assets/separadores/image.png" alt="divisor">
+
+				<section class="rasgado-lila relative bg-[#e8d4ff] px-4 py-12 text-center text-white">
+					<div class="mx-auto max-w-sm rounded-[2rem] bg-white p-8 shadow-xl">
+						<h2 class="script-font text-5xl text-[#5e9c82]">Dress Code</h2>
+						<div class="mt-4 flex items-center justify-center gap-4">
+							<img class="w-24" src="./assets/iconos/food.png" alt="dress code">
+							<div class="text-left">
+								<p class="text-4xl font-bold tracking-[0.2em] text-[#353535]">FORMAL</p>
+								<p class="text-lg text-[#353535]">Colores Suaves</p>
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<img class="w-full -scale-y-100" src="./assets/separadores/image (1).png" alt="divisor-inverse">
+
+				<section class="bg-white px-4 py-12 text-white">
+					<h2 class="script-font text-center text-5xl text-[#5e9c82]">Itinerario</h2>
+					<div class="relative mx-auto mt-8 max-w-sm">
+						<div class="absolute left-4 top-0 h-full border-l-2 border-dashed border-[#5e9c82]"></div>
+						<div class="space-y-8">
+							<div class="relative pl-12">
+								<span class="absolute left-[0.95rem] top-1 h-4 w-4 rounded-full border-2 border-[#353535] bg-[#e6f4ea]"></span>
+								<div class="flex items-center gap-4">
+									<img class="w-14" src="./assets/iconos/ceremony.png" alt="civil">
+									<div>
+										<p class="text-xl font-semibold text-[#353535]">Civil</p>
+										<p class="text-lg text-[#353535]">4 de junio · 10:00 h</p>
+									</div>
+								</div>
+							</div>
+							<div class="relative pl-12">
+								<span class="absolute left-[0.95rem] top-1 h-4 w-4 rounded-full border-2 border-[#353535] bg-[#e8d4ff]"></span>
+								<div class="flex items-center gap-4">
+									<img class="w-14" src="./assets/iconos/reception.png" alt="eclesiastico">
+									<div>
+										<p class="text-xl font-semibold text-[#353535]">Eclesiástico</p>
+										<p class="text-lg text-[#353535]">6 de junio · 11:00 h</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<section class="relative bg-[#b7c8bc] px-4 py-12 text-center text-white">
+					<div class="mx-auto max-w-sm rounded-[2rem] bg-white p-8 shadow-xl">
+						<h2 class="script-font text-5xl text-[#5e9c82]">RSVP</h2>
+						<img class="mx-auto my-4 w-12 opacity-80" src="./assets/iconos/gift.png" alt="rsvp">
+						<p class="text-lg text-[#353535]">Confirma tu asistencia y guarda este día con nosotros.</p>
+
+						<details class="mt-6 rounded-[1.5rem] border border-[#77b699]/40 bg-[#f8fff6] p-4 text-left text-[#353535]" id="rsvpDetails">
+							<summary class="cursor-pointer list-none text-center text-base font-semibold text-[#5e9c82]">Pulsa aquí para confirmar</summary>
+							<form id="rsvpForm" class="mt-4 space-y-4">
+								<div>
+									<p class="text-sm font-semibold">¿Asistirás?</p>
+									<div class="mt-2 flex gap-4">
+										<label class="inline-flex items-center gap-2"><input type="radio" name="asistira" value="Si" checked> Sí</label>
+										<label class="inline-flex items-center gap-2"><input type="radio" name="asistira" value="No"> No</label>
+									</div>
+								</div>
+
+								<div>
+									<label for="adultos" class="text-sm font-semibold">Número de adultos</label>
+									<input id="adultos" name="adultos" type="number" min="0" value="1" class="mt-1 w-full rounded-xl border border-[#c9d9cf] px-3 py-2 outline-none focus:border-[#77b699]">
+								</div>
+
+								<div>
+									<label for="adulto1" class="text-sm font-semibold">Nombre y apellido / Adulto 1</label>
+									<input id="adulto1" name="adulto1" type="text" class="mt-1 w-full rounded-xl border border-[#c9d9cf] px-3 py-2 outline-none focus:border-[#77b699]" placeholder="Nombre completo">
+								</div>
+
+								<div>
+									<label for="alergias" class="text-sm font-semibold">Alergias / Intolerancias</label>
+									<p class="text-xs text-[#6f6f6f]">(Rellenar solo si procede)</p>
+									<input id="alergias" name="alergias" type="text" class="mt-1 w-full rounded-xl border border-[#c9d9cf] px-3 py-2 outline-none focus:border-[#77b699]" placeholder="Opcional">
+								</div>
+
+								<div>
+									<label for="ninos" class="text-sm font-semibold">Número de niños</label>
+									<input id="ninos" name="ninos" type="number" min="0" value="0" class="mt-1 w-full rounded-xl border border-[#c9d9cf] px-3 py-2 outline-none focus:border-[#77b699]">
+								</div>
+
+								<div>
+									<p class="text-sm font-semibold">¿Vas a hacer uso del servicio de autobús?</p>
+									<div class="mt-2 flex gap-4">
+										<label class="inline-flex items-center gap-2"><input type="radio" name="bus" value="Si" checked> Sí</label>
+										<label class="inline-flex items-center gap-2"><input type="radio" name="bus" value="No"> No</label>
+									</div>
+								</div>
+
+								<div>
+									<label for="cancion" class="text-sm font-semibold">¿Qué canción te gustaría que sonara en la boda?</label>
+									<p class="text-xs text-[#6f6f6f]">(opcional)</p>
+									<input id="cancion" name="cancion" type="text" class="mt-1 w-full rounded-xl border border-[#c9d9cf] px-3 py-2 outline-none focus:border-[#77b699]" placeholder="Tu canción favorita">
+								</div>
+
+								<button type="submit" class="mt-2 inline-flex w-full items-center justify-center rounded-2xl bg-[#e6f4ea] px-6 py-3 text-base font-semibold text-[#353535] shadow-md transition hover:bg-[#d0eadf]">Pulsa aquí para enviar</button>
+								<p id="rsvpStatus" class="text-center text-sm text-[#5e9c82]"></p>
+							</form>
+						</details>
+
+						<div class="mt-5 text-center">
+							<a href="./admin.html" class="text-sm font-semibold text-[#5e9c82] underline decoration-dotted">Abrir panel admin</a>
+						</div>
+					</div>
+				</section>
+
+				<img class="w-full" src="./assets/separadores/divisor-line.png" alt="divisor-line">
+
+				<section class="relative bg-white px-4 py-12 text-white">
+					<div class="mx-auto max-w-sm rounded-[2rem] bg-[#f9fffb] p-8 text-center shadow-xl ring-1 ring-[#77b699]/20">
+						<h2 class="script-font text-5xl text-[#5e9c82]">Cuenta regresiva</h2>
+						<img class="mx-auto my-4 w-16 opacity-80" src="./assets/iconos/timer.png" alt="timer">
+						<div class="mt-4 grid grid-cols-4 gap-3 text-[#353535]">
+							<div class="rounded-2xl bg-[#e6f4ea] p-3 shadow-md"><p class="text-3xl font-semibold" id="days">00</p><p class="text-xs uppercase tracking-[0.2em]">Días</p></div>
+							<div class="rounded-2xl bg-[#efe4fb] p-3 shadow-md"><p class="text-3xl font-semibold" id="hours">00</p><p class="text-xs uppercase tracking-[0.2em]">Horas</p></div>
+							<div class="rounded-2xl bg-[#e6f4ea] p-3 shadow-md"><p class="text-3xl font-semibold" id="minutes">00</p><p class="text-xs uppercase tracking-[0.2em]">Min.</p></div>
+							<div class="rounded-2xl bg-[#efe4fb] p-3 shadow-md"><p class="text-3xl font-semibold" id="seconds">00</p><p class="text-xs uppercase tracking-[0.2em]">Seg.</p></div>
+						</div>
+					</div>
+				</section>
+
+				<img class="w-full" src="./assets/separadores/divisor-line.png" alt="divisor-line">
+
+				<section class="relative bg-[#b7c8bc] px-4 py-12 text-center text-white">
+					<div class="mx-auto max-w-sm rounded-[2rem] bg-white p-8 shadow-xl">
+						<h2 class="script-font text-5xl text-[#5e9c82]">Regalos</h2>
+						<img class="mx-auto my-4 w-12 opacity-80" src="./assets/iconos/gift.png" alt="regalo">
+						<p class="text-lg text-[#353535] mb-4">Lo más importante es <span class="font-semibold">tu presencia</span> en nuestro día especial.</p>
+						<p class="text-sm text-[#353535] mb-6">Si deseas contribuir, aquí están nuestros datos:</p>
+
+						<div class="space-y-4 text-left">
+							<div class="rounded-[1.5rem] border border-dashed border-[#77b699] bg-[#f8fff6] p-4">
+								<p class="text-xs uppercase tracking-[0.2em] text-[#5e9c82] font-semibold mb-2">Cuenta Joao</p>
+								<p class="text-base font-semibold text-[#353535]">Titular: Joao Perez</p>
+								<p class="text-base font-semibold text-[#353535]">Cedula: 1725895252</p>
+								<p class="text-lg font-bold text-[#353535] tracking-wide">0000 0000 0000 0000</p>
+								<p class="text-xs text-[#77b699] mt-1">Banco: Pichincha</p>
+							</div>
+
+							<div class="rounded-[1.5rem] border border-dashed border-[#c9a7ef] bg-[#f6eeff] p-4">
+								<p class="text-xs uppercase tracking-[0.2em] text-[#8a63b3] font-semibold mb-2">Cuenta Samantha</p>
+								<p class="text-base font-semibold text-[#353535]">Titular: Samantha Velez</p>
+								<p class="text-base font-semibold text-[#353535]">Cedula: 13</p>
+								<p class="text-lg font-bold text-[#353535] tracking-wide">0000 0000 0000 0000</p>
+								<p class="text-xs text-[#8a63b3] mt-1">Banco: Guayaquil</p>
+							</div>
+						</div>
+
+						<p class="text-xs uppercase tracking-[0.2em] text-[#5e9c82] mt-6 mb-3">O escanea el código</p>
+						<img class="mx-auto w-24" src="./assets/iconos/qr.png" alt="qr">
+						<p class="text-xs text-[#77b699] mt-3">Transferencia rápida</p>
+					</div>
+				</section>
+
+				<img class="w-full -scale-y-100" src="./assets/separadores/divisor-line.png" alt="divisor-line">
+
+			<img class="w-full" src="./assets/separadores/image.png" alt="divisor">
+				<section class="rasgado-lila relative bg-[#e8d4ff] px-4 py-12 text-center text-white">
+					<div class="mx-auto max-w-sm rounded-[2rem] bg-white p-8 shadow-xl">
+						<h2 class="script-font text-5xl text-[#5e9c82]">Álbum de fotos</h2>
+						<div class="relative mt-6 overflow-hidden rounded-[1.5rem] border border-[#d9e6d9] bg-white">
+							<div id="gallery" class="flex snap-x snap-mandatory overflow-x-auto scroll-smooth bg-[#f5f5f5]">
+								<img class="w-full shrink-0 snap-center object-contain p-2" src="./assets/fotos/1.jpg" alt="foto 1">
+								<img class="w-full shrink-0 snap-center object-contain p-2" src="./assets/fotos/2.jpg" alt="foto 2">
+								<img class="w-full shrink-0 snap-center object-contain p-2" src="./assets/fotos/3.jpg" alt="foto 3">
+															<img class="w-full shrink-0 snap-center object-contain p-2" src="./assets/fotos/4.jpg" alt="foto 4">
+															<img class="w-full shrink-0 snap-center object-contain p-2" src="./assets/fotos/5.jpg" alt="foto 5">
+															<img class="w-full shrink-0 snap-center object-contain p-2" src="./assets/fotos/6.jpg" alt="foto 6">
+							</div>
+							<div class="pointer-events-none absolute inset-0 flex items-center justify-between px-2">
+								<button id="galleryPrev" type="button" class="pointer-events-auto flex h-8 w-8 items-center justify-center rounded-full border bg-white shadow-md">
+									<img class="p-1.5 opacity-70" width="32" height="32" src="./assets/iconos/arrow-left.svg" alt="anterior">
+								</button>
+								<button id="galleryNext" type="button" class="pointer-events-auto flex h-8 w-8 items-center justify-center rounded-full border bg-white shadow-md">
+									<img class="p-1.5 opacity-70" width="32" height="32" src="./assets/iconos/arrow-right.svg" alt="siguiente">
+								</button>
+							</div>
+						</div>
+							<p class="mt-6 text-lg text-[#353535]">¡Acompáñanos a celebrar este día tan importante! Te esperamos</p>
+					</div>
+				</section>
+
+				<img class="w-full -scale-y-100" src="./assets/separadores/image (1).png" alt="divisor-inverse">
+			</div>
+		</section>
+	</main>
+
+	<div class="pointer-events-none fixed bottom-16 z-30 w-full">
+		<div class="mx-auto flex w-full max-w-md justify-end px-5">
+			<button id="soundToggle" type="button" class="pointer-events-auto flex h-8 w-8 items-center justify-center rounded-full bg-[#575757] shadow-lg">
+						<img class="w-5" src="./assets/iconos/speaker-wave-white.svg" alt="audio">
+			</button>
+		</div>
+	</div>
+
+	<audio id="song" loop class="invisible fixed">
+		<source src="./musica/cancion.mp3" type="audio/mpeg">
+	</audio>
+
+	<script>
+		const openInvite = document.getElementById('openInvite');
+		const coverSection = document.getElementById('coverSection');
+		const inviteContent = document.getElementById('inviteContent');
+		const song = document.getElementById('song');
+		const soundToggle = document.getElementById('soundToggle');
+		const rsvpForm = document.getElementById('rsvpForm');
+		const rsvpStatus = document.getElementById('rsvpStatus');
+		const calendarGoogle = document.getElementById('calendarGoogle');
+		const calendarIcs = document.getElementById('calendarIcs');
+		const gallery = document.getElementById('gallery');
+		const galleryPrev = document.getElementById('galleryPrev');
+		const galleryNext = document.getElementById('galleryNext');
+		let isSongPlaying = false;
+
+		const eventTitle = 'Boda de Joao y Samantha';
+		const eventLocation = 'Registro Civil de Tumbaco, Centro Comercial Ventura, primera planta baja';
+		const eventDescription = 'Nos casamos por el civil el 4 de junio a las 10:00 AM. Luego tendremos la ceremonia eclesiástica el 6 de junio a las 11:00 AM en el Templo SUD, Ruta Viva.';
+		const eventStart = new Date('2026-06-04T10:00:00');
+		const eventEnd = new Date('2026-06-04T12:00:00');
+
+		function formatDateUTC(date) {
+			const y = date.getUTCFullYear();
+			const m = String(date.getUTCMonth() + 1).padStart(2, '0');
+			const d = String(date.getUTCDate()).padStart(2, '0');
+			const hh = String(date.getUTCHours()).padStart(2, '0');
+			const mm = String(date.getUTCMinutes()).padStart(2, '0');
+			const ss = String(date.getUTCSeconds()).padStart(2, '0');
+			return `${y}${m}${d}T${hh}${mm}${ss}Z`;
+		}
+
+		calendarGoogle.addEventListener('click', (event) => {
+			event.preventDefault();
+			const dates = `${formatDateUTC(eventStart)}/${formatDateUTC(eventEnd)}`;
+			const url = new URL('https://calendar.google.com/calendar/render');
+			url.searchParams.set('action', 'TEMPLATE');
+			url.searchParams.set('text', eventTitle);
+			url.searchParams.set('dates', dates);
+			url.searchParams.set('details', eventDescription);
+			url.searchParams.set('location', eventLocation);
+			window.open(url.toString(), '_blank', 'noopener');
+		});
+
+		calendarIcs.addEventListener('click', (event) => {
+			event.preventDefault();
+			const icsContent = [
+				'BEGIN:VCALENDAR',
+				'VERSION:2.0',
+				'PRODID:-//Invitaciones//Boda//ES',
+				'BEGIN:VEVENT',
+				`UID:${Date.now()}@invitaciones.local`,
+				`DTSTAMP:${formatDateUTC(new Date())}`,
+				`DTSTART:${formatDateUTC(eventStart)}`,
+				`DTEND:${formatDateUTC(eventEnd)}`,
+				`SUMMARY:${eventTitle}`,
+				`DESCRIPTION:${eventDescription}`,
+				`LOCATION:${eventLocation}`,
+				'END:VEVENT',
+				'END:VCALENDAR'
+			].join('\r\n');
+
+			const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
+			const blobUrl = URL.createObjectURL(blob);
+			const downloadLink = document.createElement('a');
+			downloadLink.href = blobUrl;
+			downloadLink.download = 'boda-joao-samantha.ics';
+			document.body.appendChild(downloadLink);
+			downloadLink.click();
+			document.body.removeChild(downloadLink);
+			URL.revokeObjectURL(blobUrl);
+		});
+
+		function getRsvpData() {
+			try {
+				return JSON.parse(localStorage.getItem('rsvpSubmissions') || '[]');
+			} catch (error) {
+				void error;
+				return [];
+			}
+		}
+
+		function saveRsvpData(data) {
+			localStorage.setItem('rsvpSubmissions', JSON.stringify(data));
+		}
+
+		rsvpForm.addEventListener('submit', (event) => {
+			event.preventDefault();
+			const formData = new FormData(rsvpForm);
+			const payload = {
+				asistira: String(formData.get('asistira') || 'Si'),
+				adultos: Number(formData.get('adultos') || 0),
+				adulto1: String(formData.get('adulto1') || '').trim(),
+				alergias: String(formData.get('alergias') || '').trim(),
+				ninos: Number(formData.get('ninos') || 0),
+				bus: String(formData.get('bus') || 'Si'),
+				cancion: String(formData.get('cancion') || '').trim(),
+				createdAt: new Date().toISOString()
+			};
+
+			if (payload.adultos > 0 && !payload.adulto1) {
+				rsvpStatus.textContent = 'Por favor escribe al menos el nombre del Adulto 1.';
+				return;
+			}
+
+			const submissions = getRsvpData();
+			submissions.push(payload);
+			saveRsvpData(submissions);
+
+			const text = [
+				'Confirmación de asistencia',
+				`¿Asistirá?: ${payload.asistira}`,
+				`Adultos: ${payload.adultos}`,
+				`Adulto 1: ${payload.adulto1 || 'N/A'}`,
+				`Alergias: ${payload.alergias || 'Ninguna'}`,
+				`Niños: ${payload.ninos}`,
+				`Bus: ${payload.bus}`,
+				`Canción: ${payload.cancion || 'Sin sugerencia'}`
+			].join('\n');
+
+			const waUrl = `https://wa.me/593963043689?text=${encodeURIComponent(text)}`;
+			window.open(waUrl, '_blank', 'noopener');
+			rsvpStatus.textContent = 'Confirmación guardada y lista para enviar.';
+			rsvpForm.reset();
+			document.getElementById('adultos').value = '1';
+			document.getElementById('ninos').value = '0';
+		});
+
+		openInvite.addEventListener('click', async () => {
+			coverSection.classList.add('hidden');
+			inviteContent.classList.remove('hidden');
+			inviteContent.scrollIntoView({ behavior: 'smooth', block: 'start' });
+			try {
+				await song.play();
+				isSongPlaying = true;
+			} catch (error) {
+				void error;
+			}
+		});
+
+		soundToggle.addEventListener('click', async () => {
+			if (isSongPlaying) {
+				song.pause();
+				isSongPlaying = false;
+				return;
+			}
+
+			try {
+				await song.play();
+			} catch (error) {
+				void error;
+			}
+			isSongPlaying = true;
+		});
+
+		galleryPrev.addEventListener('click', () => {
+			gallery.scrollBy({ left: -gallery.clientWidth, behavior: 'smooth' });
+		});
+
+		galleryNext.addEventListener('click', () => {
+			gallery.scrollBy({ left: gallery.clientWidth, behavior: 'smooth' });
+		});
+
+		const weddingDate = new Date('2026-06-04T10:00:00').getTime();
+
+		function updateCountdown() {
+			const now = Date.now();
+			const distance = Math.max(0, weddingDate - now);
+			const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+			const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+			const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+			const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+			document.getElementById('days').textContent = String(days).padStart(2, '0');
+			document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+			document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+			document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+		}
+
+		updateCountdown();
+		setInterval(updateCountdown, 1000);
+	</script>
+</body>
+</html>
+
+
