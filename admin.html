@@ -101,9 +101,10 @@
 				.reverse()
 				.map((item) => {
 					const fecha = new Date(item.createdAt).toLocaleString('es-EC');
+					const bus = item.bus || 'No aplica';
 					return `<div class="mb-3 rounded-lg border border-[#ececec] p-3 text-sm">
 						<p><strong>${item.adulto1 || 'Sin nombre'}</strong> - ${item.asistira}</p>
-						<p>Adultos: ${item.adultos} | Niños: ${item.ninos} | Bus: ${item.bus}</p>
+						<p>Adultos: ${item.adultos} | Niños: ${item.ninos || 0} | Bus: ${bus}</p>
 						<p>Alergias: ${item.alergias || 'Ninguna'}</p>
 						<p>Canción: ${item.cancion || 'Sin sugerencia'}</p>
 						<p class="text-xs text-[#777] mt-1">${fecha}</p>
