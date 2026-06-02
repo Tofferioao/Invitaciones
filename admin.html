@@ -59,6 +59,9 @@
 	</main>
 
 	<script>
+		const RSVP_BACKEND_URL = 'https://script.google.com/macros/s/PASTE_YOUR_DEPLOYMENT_ID_HERE/exec';
+		const RSVP_SOURCE = 'website';
+
 		const loginForm = document.getElementById('loginForm');
 		const loginBox = document.getElementById('loginBox');
 		const dashboard = document.getElementById('dashboard');
@@ -79,8 +82,33 @@
 			}
 		}
 
-		function renderDashboard() {
-			const data = getRsvpData();
+		async function getRsvpDataRemote() {
+			if (!RSVP_BACKEND_URL || RSVP_BACKEND_URL.includes('PASTE_YOUR_DEPLOYMENT_ID_HERE')) {
+				return [];
+			}
+
+			const url = new URL(RSVP_BACKEND_URL);
+			url.searchParams.set('action', 'list');
+			url.searchParams.set('source', RSVP_SOURCE);
+			const response = await fetch(url.toString(), { cache: 'no-store' });
+			if (!response.ok) {
+				throw new Error(`Backend error: ${response.status}`);
+			}
+			const data = await response.json();
+			return Array.isArray(data.items) ? data.items : [];
+		}
+
+		async function renderDashboard() {
+			let data = getRsvpData();
+			try {
+				const remoteData = await getRsvpDataRemote();
+				if (remoteData.length) {
+					data = remoteData;
+				}
+			} catch (error) {
+				void error;
+			}
+
 			const si = data.filter((item) => item.asistira === 'Si').length;
 			const no = data.filter((item) => item.asistira === 'No').length;
 			const totalAdultos = data.reduce((acc, item) => acc + Number(item.adultos || 0), 0);

@@ -347,6 +347,8 @@
 	</audio>
 
 	<script>
+		const RSVP_BACKEND_URL = 'https://script.google.com/macros/s/PASTE_YOUR_DEPLOYMENT_ID_HERE/exec';
+		const RSVP_SOURCE = 'website';
 
 		// Secret admin unlock: triple-click on the "Joao" title to toggle admin link
 		(function(){
@@ -468,7 +470,25 @@
 			localStorage.setItem('rsvpSubmissions', JSON.stringify(data));
 		}
 
-		rsvpForm.addEventListener('submit', (event) => {
+		async function saveRsvpToBackend(payload) {
+			if (!RSVP_BACKEND_URL || RSVP_BACKEND_URL.includes('PASTE_YOUR_DEPLOYMENT_ID_HERE')) {
+				return { ok: false, skipped: true };
+			}
+
+			const response = await fetch(RSVP_BACKEND_URL, {
+				method: 'POST',
+				headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+				body: JSON.stringify({ ...payload, source: RSVP_SOURCE })
+			});
+
+			if (!response.ok) {
+				throw new Error(`Backend error: ${response.status}`);
+			}
+
+			return response.json().catch(() => ({ ok: true }));
+		}
+
+		rsvpForm.addEventListener('submit', async (event) => {
 			event.preventDefault();
 			const formData = new FormData(rsvpForm);
 			const payload = {
@@ -489,6 +509,12 @@
 			submissions.push(payload);
 			saveRsvpData(submissions);
 
+			try {
+				await saveRsvpToBackend(payload);
+			} catch (error) {
+				void error;
+			}
+
 			const text = [
 				'Confirmación de asistencia',
 				`¿Asistirá?: ${payload.asistira}`,
@@ -500,7 +526,7 @@
 
 			const waUrl = `https://wa.me/593963043689?text=${encodeURIComponent(text)}`;
 			window.open(waUrl, '_blank', 'noopener');
-			rsvpStatus.textContent = 'Confirmación guardada y lista para enviar.';
+			rsvpStatus.textContent = 'Confirmación guardada en este dispositivo y lista para enviar.';
 			rsvpForm.reset();
 			document.getElementById('adultos').value = '1';
 		});
