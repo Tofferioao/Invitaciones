@@ -28,13 +28,15 @@
 			<form id="loginForm" class="mt-6 space-y-4">
 				<div>
 					<label for="user" class="text-sm font-semibold">Usuario</label>
-					<input id="user" type="text" class="mt-1 w-full rounded-xl border border-[#c9d9cf] px-3 py-2 outline-none focus:border-[#77b699]" placeholder="admin">
+					<input id="user" type="text" class="mt-1 w-full rounded-xl border border-[#c9d9cf] px-3 py-2 outline-none focus:border-[#77b699]" placeholder="joao">
 				</div>
 				<div>
 					<label for="pass" class="text-sm font-semibold">Clave</label>
-					<input id="pass" type="password" class="mt-1 w-full rounded-xl border border-[#c9d9cf] px-3 py-2 outline-none focus:border-[#77b699]" placeholder="admin">
+					<input id="pass" type="password" class="mt-1 w-full rounded-xl border border-[#c9d9cf] px-3 py-2 outline-none focus:border-[#77b699]" placeholder="joao">
 				</div>
-				<button type="submit" class="inline-flex w-full items-center justify-center rounded-2xl bg-[#e6f4ea] px-6 py-3 font-semibold shadow-md transition hover:bg-[#d0eadf]">Entrar</button>
+				<div class="flex justify-end">
+					<button type="submit" class="inline-flex items-center justify-center rounded-full bg-[#e6f4ea] px-3 py-1 text-xs font-semibold shadow-sm transition hover:bg-[#d0eadf]">Entrar</button>
+				</div>
 				<p id="loginStatus" class="text-center text-sm text-[#b65f5f]"></p>
 			</form>
 		</section>
@@ -121,7 +123,7 @@
 			const user = document.getElementById('user').value.trim();
 			const pass = document.getElementById('pass').value;
 
-			if (user === 'admin' && pass === 'admin') {
+			if (user === 'joao' && pass === 'joao') {
 				sessionStorage.setItem('adminLogged', '1');
 				openDashboard();
 				return;
