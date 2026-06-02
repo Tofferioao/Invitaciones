@@ -28,11 +28,11 @@
 			<form id="loginForm" class="mt-6 space-y-4">
 				<div>
 					<label for="user" class="text-sm font-semibold">Usuario</label>
-					<input id="user" type="text" class="mt-1 w-full rounded-xl border border-[#c9d9cf] px-3 py-2 outline-none focus:border-[#77b699]" placeholder="joao">
+					<input id="user" type="text" class="mt-1 w-full rounded-xl border border-[#c9d9cf] px-3 py-2 outline-none focus:border-[#77b699]" placeholder="">
 				</div>
 				<div>
 					<label for="pass" class="text-sm font-semibold">Clave</label>
-					<input id="pass" type="password" class="mt-1 w-full rounded-xl border border-[#c9d9cf] px-3 py-2 outline-none focus:border-[#77b699]" placeholder="joao">
+					<input id="pass" type="password" class="mt-1 w-full rounded-xl border border-[#c9d9cf] px-3 py-2 outline-none focus:border-[#77b699]" placeholder="">
 				</div>
 				<div class="flex justify-end">
 					<button type="submit" class="inline-flex items-center justify-center rounded-full bg-[#e6f4ea] px-3 py-1 text-xs font-semibold shadow-sm transition hover:bg-[#d0eadf]">Entrar</button>
@@ -117,6 +117,12 @@
 			dashboard.classList.remove('hidden');
 			renderDashboard();
 		}
+
+        // Prevent direct access: require unlock token set from index page
+        if (sessionStorage.getItem('adminUnlocked') !== '1') {
+            // Redirect to home if not unlocked
+            window.location.replace('./');
+        }
 
 		loginForm.addEventListener('submit', (event) => {
 			event.preventDefault();

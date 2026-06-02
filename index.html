@@ -92,7 +92,7 @@
 				</div>
 
 				<div class="relative py-8 text-center">
-					<div class="script-font text-6xl leading-none text-[#303030]">Joao</div>
+					<div id="secretTrigger" class="script-font text-6xl leading-none text-[#303030]">Joao</div>
 					<div class="mt-2 text-4xl text-[#5e9c82]">
 						<img class="mx-auto h-14 w-auto" src="./assets/iconos/ampersand-alt.png" alt="&amp;">
 					</div>
@@ -247,7 +247,7 @@
 						</details>
 
 						<div class="mt-5 text-center">
-							<a href="./admin.html" class="text-sm font-semibold text-[#5e9c82] underline decoration-dotted">Abrir panel admin</a>
+							<a id="adminLink" href="./admin.html" class="text-sm font-semibold text-[#5e9c82] underline decoration-dotted" style="display:none">Abrir panel admin</a>
 						</div>
 					</div>
 				</section>
@@ -346,6 +346,43 @@
 	</audio>
 
 	<script>
+
+		// Secret admin unlock: triple-click on the "Joao" title to toggle admin link
+		(function(){
+			const secretTrigger = document.getElementById('secretTrigger');
+			const adminLink = document.getElementById('adminLink');
+			let clicks = 0;
+			let timer = null;
+
+			function updateAdminLink() {
+				if (sessionStorage.getItem('adminUnlocked') === '1') {
+					if (adminLink) adminLink.style.display = 'inline-block';
+				} else {
+					if (adminLink) adminLink.style.display = 'none';
+				}
+			}
+
+			if (adminLink) updateAdminLink();
+
+			if (secretTrigger) {
+				secretTrigger.addEventListener('click', () => {
+					clicks++;
+					if (timer) clearTimeout(timer);
+					timer = setTimeout(() => { clicks = 0; timer = null; }, 1200);
+					if (clicks >= 3) {
+						clicks = 0;
+						const unlocked = sessionStorage.getItem('adminUnlocked') === '1';
+						if (unlocked) {
+							sessionStorage.removeItem('adminUnlocked');
+						} else {
+							sessionStorage.setItem('adminUnlocked','1');
+						}
+						updateAdminLink();
+					}
+				});
+			}
+		})();
+
 		const openInvite = document.getElementById('openInvite');
 		const coverSection = document.getElementById('coverSection');
 		const inviteContent = document.getElementById('inviteContent');
