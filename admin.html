@@ -119,12 +119,6 @@
 			renderDashboard();
 		}
 
-        // Prevent direct access: require unlock token set from index page
-        if (sessionStorage.getItem('adminUnlocked') !== '1') {
-            // Redirect to home if not unlocked
-            window.location.replace('./');
-        }
-
 		loginForm.addEventListener('submit', (event) => {
 			event.preventDefault();
 			const user = document.getElementById('user').value.trim();
